@@ -1,0 +1,15 @@
+{
+  "name": "latex-ast",
+  "version": "1.0.0",
+  "description": "latex abstract syntax tree",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "latex",
+    "ast"
+  ],
+  "author": "leenty@qq.com",
+  "license": "ISC"
+}
