@@ -1,5 +1,6 @@
 // const latexCode = '/sqrt {356} 3 /frac 1 {/sqrt 3}'
-const latexCode = '-b\\pm \\sqrt {{b^2}-4ac}测试'
+// const latexCode = '-b\\pm \\sqrt {{b^2}-4ac}测试'
+const latexCode = '\\frac{{-b\\pm \\sqrt {{b^2}-4ac}}}{{2a}}'
 
 const tokenizer = (input = '') => {
   let current = 0
@@ -15,7 +16,7 @@ const tokenizer = (input = '') => {
     }
 
     if (char === '{' || char === '}') {
-      tokens.push({ type: 'brace', value: char})
+      tokens.push({ type: 'braces', value: char})
       current ++
       continue
     }
@@ -80,4 +81,5 @@ const tokenizer = (input = '') => {
 
 
 const result = tokenizer(latexCode)
+console.log(latexCode)
 console.log(result)
