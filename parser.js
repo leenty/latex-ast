@@ -1,3 +1,5 @@
+// const latexCode = '\\frac{{-b\\pm \\sqrt {{b^2}-4ac}}}{{2a}}'
+
 const tokens = [
   { type: 'formula', value: '\\frac' },
   { type: 'braces', value: '{' },
@@ -58,7 +60,7 @@ function parser(tokens) {
         pramas: [],
       }
 
-      token = tokens[++current]
+      // token = tokens[++current]
       while (
         token.type !== 'braces' ||
         token.type === 'braces' && token.value !== '}'
