@@ -15,8 +15,21 @@ const tokenizer = (input = '') => {
       continue
     }
 
+    // braces
     if (char === '{' || char === '}') {
-      tokens.push({ type: 'braces', value: char})
+      tokens.push({ type: 'wrapper', value: char})
+      current ++
+      continue
+    }
+
+    if (char === '[' || char === ']') {
+      tokens.push({ type: 'weakWrapper', value: char})
+      current ++
+      continue
+    }
+
+    if (char === '(' || char === ')') {
+      tokens.push({ type: 'block', value: char})
       current ++
       continue
     }
@@ -61,7 +74,7 @@ const tokenizer = (input = '') => {
       let value = char
       char = input[++current]
 
-      while (char !== undefined && PARAMS.test(char)) {
+      while (current < input.length && PARAMS.test(char)) {
         value += char
         char = input[++current]
       }

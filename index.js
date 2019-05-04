@@ -1,8 +1,8 @@
 var tokenizer = require('./tokenizer')
 var parser = require('./parser')
+var latexCode = require('./latexCode')
 
-// const latexCode = '\\frac{{-b\\pm \\sqrt {{b^2}-4ac}}}{{2a}}'
-const latexCode = '123'
+
 console.log('【latexCode】\n', latexCode, '\n')
 
 const tokens = tokenizer(latexCode)

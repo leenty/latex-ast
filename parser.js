@@ -32,6 +32,7 @@ function parser(tokens) {
 
   function walk() {
     let token = tokens[current]
+    // 公式
     if (token.type === 'formula') {
       current ++
       return {
@@ -39,6 +40,7 @@ function parser(tokens) {
         value: token.value,
       }
     }
+    // 参数
     if (token.type === 'params') {
       current ++
       return {
@@ -46,6 +48,7 @@ function parser(tokens) {
         value: token.value,
       }
     }
+    // 操作符
     if (token.type === 'operator') {
       current ++
       return {
@@ -53,7 +56,8 @@ function parser(tokens) {
         value: token.value,
       }
     }
-    if (token.type === 'braces' && token.value === '{') {
+    // 包裹
+    if (token.type === 'wrapper' && token.value === '{') {
       token = tokens[++current]
       let node = {
         type: 'Wrapper',
@@ -62,8 +66,8 @@ function parser(tokens) {
 
       // token = tokens[++current]
       while (
-        token.type !== 'braces' ||
-        token.type === 'braces' && token.value !== '}'
+        token.type !== 'wrapper' ||
+        token.type === 'wrapper' && token.value !== '}'
       ) {
         node.pramas.push(walk())
         token = tokens[current]
@@ -71,6 +75,45 @@ function parser(tokens) {
       current ++
       return node
     }
+    // 弱包裹
+    if (token.type === 'weakWrapper' && token.value === '[') {
+      token = tokens[++current]
+      let node = {
+        type: 'WeakWrapper',
+        pramas: [],
+      }
+
+      // token = tokens[++current]
+      while (
+        token.type !== 'weakWrapper' ||
+        token.type === 'weakWrapper' && token.value !== ']'
+      ) {
+        node.pramas.push(walk())
+        token = tokens[current]
+      }
+      current ++
+      return node
+    }
+    // 括号
+    if (token.type === 'block' && token.value === '(') {
+      token = tokens[++current]
+      let node = {
+        type: 'Block',
+        pramas: [],
+      }
+
+      // token = tokens[++current]
+      while (
+        token.type !== 'block' ||
+        token.type === 'block' && token.value !== ')'
+      ) {
+        node.pramas.push(walk())
+        token = tokens[current]
+      }
+      current ++
+      return node
+    }
+    current ++
     return {
       type: 'Other',
       value: token.value,
