@@ -1,30 +1,30 @@
 // const latexCode = '\\frac{{-b\\pm \\sqrt {{b^2}-4ac}}}{{2a}}'
 
-const tokens = [
-  { type: 'formula', value: '\\frac' },
-  { type: 'braces', value: '{' },
-  { type: 'braces', value: '{' },
-  { type: 'operator', value: '-' },
-  { type: 'params', value: 'b' },
-  { type: 'formula', value: '\\pm' },
-  { type: 'formula', value: '\\sqrt' },
-  { type: 'braces', value: '{' },
-  { type: 'braces', value: '{' },
-  { type: 'params', value: 'b' },
-  { type: 'operator', value: '^' },
-  { type: 'params', value: '2' },
-  { type: 'braces', value: '}' },
-  { type: 'operator', value: '-' },
-  { type: 'params', value: '4ac' },
-  { type: 'braces', value: '}' },
-  { type: 'braces', value: '}' },
-  { type: 'braces', value: '}' },
-  { type: 'braces', value: '{' },
-  { type: 'braces', value: '{' },
-  { type: 'params', value: '2a' },
-  { type: 'braces', value: '}' },
-  { type: 'braces', value: '}' }
-]
+// const tokens = [
+//   { type: 'formula', value: '\\frac' },
+//   { type: 'braces', value: '{' },
+//   { type: 'braces', value: '{' },
+//   { type: 'operator', value: '-' },
+//   { type: 'params', value: 'b' },
+//   { type: 'formula', value: '\\pm' },
+//   { type: 'formula', value: '\\sqrt' },
+//   { type: 'braces', value: '{' },
+//   { type: 'braces', value: '{' },
+//   { type: 'params', value: 'b' },
+//   { type: 'operator', value: '^' },
+//   { type: 'params', value: '2' },
+//   { type: 'braces', value: '}' },
+//   { type: 'operator', value: '-' },
+//   { type: 'params', value: '4ac' },
+//   { type: 'braces', value: '}' },
+//   { type: 'braces', value: '}' },
+//   { type: 'braces', value: '}' },
+//   { type: 'braces', value: '{' },
+//   { type: 'braces', value: '{' },
+//   { type: 'params', value: '2a' },
+//   { type: 'braces', value: '}' },
+//   { type: 'braces', value: '}' }
+// ]
 
 
 function parser(tokens) {
@@ -86,5 +86,7 @@ function parser(tokens) {
   return ast
 }
 
-console.log(tokens)
-console.log(parser(tokens))
+// console.log(tokens)
+// console.log(parser(tokens))
+
+module.exports = parser

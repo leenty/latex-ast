@@ -11,5 +11,8 @@
     "ast"
   ],
   "author": "leenty@qq.com",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^2.20.0"
+  }
 }

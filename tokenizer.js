@@ -1,6 +1,6 @@
 // const latexCode = '/sqrt {356} 3 /frac 1 {/sqrt 3}'
 // const latexCode = '-b\\pm \\sqrt {{b^2}-4ac}测试'
-const latexCode = '\\frac{{-b\\pm \\sqrt {{b^2}-4ac}}}{{2a}}'
+// const latexCode = '\\frac{{-b\\pm \\sqrt {{b^2}-4ac}}}{{2a}}'
 
 const tokenizer = (input = '') => {
   let current = 0
@@ -21,7 +21,7 @@ const tokenizer = (input = '') => {
       continue
     }
 
-    const OPERATORS = /[\+\-\=\_\^]/ 
+    const OPERATORS = /[\+\-\=\_\^]/
     if (OPERATORS.test(char)) {
       tokens.push({ type: 'operator', value: char})
       current ++
@@ -45,7 +45,7 @@ const tokenizer = (input = '') => {
       let value = char
       const FORMULA = /[a-z]/i
       char = input[++current]
-      
+
       while (FORMULA.test(char)) {
         value += char
         char = input[++current]
@@ -55,12 +55,13 @@ const tokenizer = (input = '') => {
       continue
     }
 
+    // debugger
     const PARAMS = /\w/
     if (PARAMS.test(char)) {
       let value = char
       char = input[++current]
 
-      while (PARAMS.test(char)) {
+      while (char !== undefined && PARAMS.test(char)) {
         value += char
         char = input[++current]
       }
@@ -80,6 +81,8 @@ const tokenizer = (input = '') => {
 }
 
 
-const result = tokenizer(latexCode)
-console.log(latexCode)
-console.log(result)
+// const result = tokenizer(latexCode)
+// console.log(latexCode)
+// console.log(result)
+
+module.exports = tokenizer
