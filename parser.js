@@ -48,6 +48,14 @@ function parser(tokens) {
         value: token.value,
       }
     }
+    // 参数
+    if (token.type === 'number') {
+      current ++
+      return {
+        type: 'Number',
+        value: token.value,
+      }
+    }
     // 操作符
     if (token.type === 'operator') {
       current ++

@@ -34,25 +34,25 @@ const tokenizer = (input = '') => {
       continue
     }
 
-    const OPERATORS = /[\+\-\=\_\^]/
+    const OPERATORS = /[\+\-\*\=\_\^]/
     if (OPERATORS.test(char)) {
       tokens.push({ type: 'operator', value: char})
       current ++
       continue
     }
 
-    // let NUMBERS = /[0-9]/;
-    // if (NUMBERS.test(char)) {
-    //   let value = ''
+    let NUMBERS = /[0-9]/;
+    if (NUMBERS.test(char)) {
+      let value = ''
 
-    //   while (NUMBERS.test(char)) {
-    //     value += char
-    //     char = input[++ current]
-    //   }
+      while (NUMBERS.test(char)) {
+        value += char
+        char = input[++ current]
+      }
 
-    //   tokens.push({ type: 'number', value })
-    //   continue
-    // }
+      tokens.push({ type: 'number', value })
+      continue
+    }
 
     if (char === "\\") {
       let value = char
