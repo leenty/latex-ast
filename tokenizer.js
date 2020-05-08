@@ -9,9 +9,23 @@ const tokenizer = (input = '') => {
   while (current < input.length) {
     let char = input[current];
 
+    // let LINEBREAK = /\n/;
+    // if (LINEBREAK.test(char)) {
+    //   tokens.push({ type: 'linkBreak', value: char })
+    //   current ++
+    //   continue
+    // }
+
     let WHITESPACE = /\s/;
     if (WHITESPACE.test(char)) {
-      current ++
+      let currentWhiteSpace = char
+      let value = ''
+      while (currentWhiteSpace === char) { // 连续相等的空白符
+        value += char
+        char = input[++ current]
+      }
+      tokens.push({ type: 'whiteSpace', value })
+      // current ++
       continue
     }
 
@@ -56,9 +70,9 @@ const tokenizer = (input = '') => {
 
     if (char === "\\") {
       let value = char
-      const FORMULA = /[a-z]/i
       char = input[++current]
-
+      
+      const FORMULA = /[a-z\\]/i
       while (FORMULA.test(char)) {
         value += char
         char = input[++current]
@@ -69,15 +83,17 @@ const tokenizer = (input = '') => {
     }
 
     // debugger
-    const PARAMS = /\w/
+    // const PARAMS = /\w/
+    const PARAMS = /[A-Za-z]/
     if (PARAMS.test(char)) {
       let value = char
       char = input[++current]
 
-      while (current < input.length && PARAMS.test(char)) {
-        value += char
-        char = input[++current]
-      }
+      // 对于params来说，每个字母都会代表一个未知数，多个字母不应该视为一个未知数
+      // while (current < input.length && PARAMS.test(char)) {
+      //   value += char
+      //   char = input[++current]
+      // }
 
       tokens.push({type: 'params', value})
       continue

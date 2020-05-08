@@ -32,12 +32,30 @@ function parser(tokens) {
 
   function walk() {
     let token = tokens[current]
+    // // 换行
+    // if (token.type === 'linkBreak') {
+    //   return {
+    //     type: 'LinkBreak',
+    //     value: token.value,
+    //   }
+    // }
+
+    // 空白字符
+    if (token.type === 'whiteSpace') {
+      current ++
+      return {
+        type: 'WhiteSpace',
+        value: token.value,
+      }
+    }
+    
     // 公式
     if (token.type === 'formula') {
       current ++
       return {
         type: 'Formula',
         value: token.value,
+        // name: token.value,
       }
     }
     // 参数
