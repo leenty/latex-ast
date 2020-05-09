@@ -58,6 +58,7 @@ function parser(tokens) {
         // name: token.value,
       }
     }
+
     // 参数
     if (token.type === 'params') {
       current ++
@@ -66,6 +67,7 @@ function parser(tokens) {
         value: token.value,
       }
     }
+
     // 参数
     if (token.type === 'number') {
       current ++
@@ -74,6 +76,7 @@ function parser(tokens) {
         value: token.value,
       }
     }
+
     // 操作符
     if (token.type === 'operator') {
       current ++
@@ -82,6 +85,7 @@ function parser(tokens) {
         value: token.value,
       }
     }
+
     // 包裹
     if (token.type === 'wrapper' && token.value === '{') {
       token = tokens[++current]
@@ -89,7 +93,6 @@ function parser(tokens) {
         type: 'Wrapper',
         pramas: [],
       }
-
       // token = tokens[++current]
       while (
         token.type !== 'wrapper' ||
@@ -101,6 +104,7 @@ function parser(tokens) {
       current ++
       return node
     }
+
     // 弱包裹
     if (token.type === 'weakWrapper' && token.value === '[') {
       token = tokens[++current]
@@ -108,7 +112,6 @@ function parser(tokens) {
         type: 'WeakWrapper',
         pramas: [],
       }
-
       // token = tokens[++current]
       while (
         token.type !== 'weakWrapper' ||
@@ -120,6 +123,7 @@ function parser(tokens) {
       current ++
       return node
     }
+
     // 括号
     if (token.type === 'block' && token.value === '(') {
       token = tokens[++current]
@@ -145,6 +149,7 @@ function parser(tokens) {
       value: token.value,
     }
   }
+
   let ast = {
     type: 'Expression',
     body: [],

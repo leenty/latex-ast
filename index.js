@@ -1,7 +1,7 @@
-var tokenizer = require('./tokenizer')
-var parser = require('./parser')
-var latexCode = require('./latexCode')
-var codeGenerator = require('./codeGenerator')
+const tokenizer = require('./src/tokenizer')
+const parser = require('./src/parser')
+const codeGenerator = require('./src/codeGenerator')
+const latexCode = require('./tests/latexCode')
 
 
 console.log('【latexCode】\n', latexCode, '\n')
