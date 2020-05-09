@@ -1,12 +1,26 @@
-const traverser = require('./traverser')
+const traverser = require('../traverser')
 
-const transformer = (ast) => {
+/**
+ * 对latex进行美化
+ * 去除多余的空格 “\sqrt   3” -> “\sqrt 3”
+ * 去除多余的大括号 “\sqrt {{{34}}}” -> “\sqrt {34}”
+ * @param {*} ast 
+ */
+const prettyTransformer = (ast) => {
   const newAst = {
     type: 'Expression',
     body: [],
   }
 
   ast._context = newAst.body
+
+  // 清理冗余的括号 “\sqrt {{{34}}}” -> “\sqrt {34}”
+  function clearRedundant(node, type = 'Wrapper') {
+    if (node.params.length === 1 && node.params[0].type === type) { // 两级单个Wrapper嵌套，无意义，遇到则去除
+      node.params = node.params[0].params
+      clearRedundant(node)
+    }
+  }
 
   traverser(ast, {
     Wrapper: {
@@ -15,6 +29,10 @@ const transformer = (ast) => {
           type: 'Wrapper',
           params: [],
         }
+
+        
+        clearRedundant(node, 'Wrapper')
+
         node._context = nodeAst.params
         parent._context.push(nodeAst)
       }
@@ -41,7 +59,7 @@ const transformer = (ast) => {
     },
     WhiteSpace: {
       enter(node, parent) {
-        // 对重复空白符进行缩减
+        // 对重复空白符进行缩减 “\sqrt   3” -> “\sqrt 3”
         const value = node.value.slice(0,1)
         parent._context.push({
           type: 'WhiteSpace',
@@ -95,4 +113,4 @@ const transformer = (ast) => {
   return newAst
 }
 
-module.exports = transformer
+module.exports = prettyTransformer

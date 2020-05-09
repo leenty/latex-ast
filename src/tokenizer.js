@@ -48,7 +48,7 @@ const tokenizer = (input = '') => {
       continue
     }
 
-    const OPERATORS = /[\+\-\*\=\_\^]/
+    const OPERATORS = /[\+\-\*\=\_\^\']/
     if (OPERATORS.test(char)) {
       tokens.push({ type: 'operator', value: char})
       current ++
@@ -93,6 +93,12 @@ const tokenizer = (input = '') => {
       // while (current < input.length && PARAMS.test(char)) {
       //   value += char
       //   char = input[++current]
+      // }
+
+      // 匹配字母后跟数字或撇，如a1,a2,a' (暂不匹配)
+      // while (NUMBERS.test(char) || /\'/.test(char)) {
+      //   value += char
+      //   char = input[++ current]
       // }
 
       tokens.push({type: 'params', value})

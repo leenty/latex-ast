@@ -1,7 +1,7 @@
 const tokenizer = require('../src/tokenizer')
 const parser = require('../src/parser')
 const codeGenerator = require('../src/codeGenerator')
-const transformer = require('../src/transformer')
+const prettyTransformer = require('../src/transformers/prettyTransformer')
 const latexCode = require('./latexCode')
 
 console.time('use time')
@@ -11,9 +11,9 @@ const tokens = tokenizer(latexCode)
 // console.log('【tokens】\n', tokens, '\n')
 
 const ast = parser(tokens)
-// console.log('【ast】\n', ast, '\n')
+console.log('【ast】\n', ast, '\n')
 
-const newAst = transformer(ast)
+const newAst = prettyTransformer(ast)
 // console.log('【newAst】\n', newAst, '\n')
 
 const newCode = codeGenerator(newAst)

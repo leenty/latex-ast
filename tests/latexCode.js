@@ -12,6 +12,8 @@
 // const latexCode = '\\sqrt {\\sqrt 3}'
 // const latexCode = '\\sqrt {2013}  - 1'
 // const latexCode = '\\[9.60 \\times {10^6}\\]平方千米'
-const latexCode = '(2,2),(0,4)'
+// const latexCode = '(2,2),(0,4)'
+// const latexCode = '2gfed\'c\'\'b1a2'
+const latexCode = '\\sqrt [3] {{{34}}}'
 
 module.exports = latexCode
