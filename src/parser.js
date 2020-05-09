@@ -91,14 +91,14 @@ function parser(tokens) {
       token = tokens[++current]
       let node = {
         type: 'Wrapper',
-        pramas: [],
+        params: [],
       }
       // token = tokens[++current]
       while (
         token.type !== 'wrapper' ||
         token.type === 'wrapper' && token.value !== '}'
       ) {
-        node.pramas.push(walk())
+        node.params.push(walk())
         token = tokens[current]
       }
       current ++
@@ -110,14 +110,14 @@ function parser(tokens) {
       token = tokens[++current]
       let node = {
         type: 'WeakWrapper',
-        pramas: [],
+        params: [],
       }
       // token = tokens[++current]
       while (
         token.type !== 'weakWrapper' ||
         token.type === 'weakWrapper' && token.value !== ']'
       ) {
-        node.pramas.push(walk())
+        node.params.push(walk())
         token = tokens[current]
       }
       current ++
@@ -129,7 +129,7 @@ function parser(tokens) {
       token = tokens[++current]
       let node = {
         type: 'Block',
-        pramas: [],
+        params: [],
       }
 
       // token = tokens[++current]
@@ -137,7 +137,7 @@ function parser(tokens) {
         token.type !== 'block' ||
         token.type === 'block' && token.value !== ')'
       ) {
-        node.pramas.push(walk())
+        node.params.push(walk())
         token = tokens[current]
       }
       current ++

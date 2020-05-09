@@ -4,11 +4,11 @@ const codeGenerator = (node) => {
     case 'Expression': // latex表达式（根节点）
       return node.body.map(codeGenerator).join('');
     case 'Wrapper': // 包裹,由“{”和“}”包裹起来的部分latex
-      return '{' + node.pramas.map(codeGenerator).join('') + '}'
-    case 'weakWrapper': // 弱包裹,由“[”和“]”包裹起来的部分latex
-      return '[' + node.pramas.map(codeGenerator).join('') + ']'
+      return '{' + node.params.map(codeGenerator).join('') + '}'
+    case 'WeakWrapper': // 弱包裹,由“[”和“]”包裹起来的部分latex
+      return '[' + node.params.map(codeGenerator).join('') + ']'
     case 'Block': // 块,由“(”和“)”包裹起来的部分latex
-      return '(' + node.pramas.map(codeGenerator).join('') + ')'
+      return '(' + node.params.map(codeGenerator).join('') + ')'
     case 'Formula': // 函数运算标识
       return node.value + ''
     case 'WhiteSpace': // 空白符

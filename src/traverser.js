@@ -5,7 +5,7 @@ const traverser = (ast, visitor) => {
     });
   }
   
-  function traverseNode(ast, parent) {
+  function traverseNode(node, parent) {
     const methods = visitor[node.type]
 
     if (methods && methods.enter) {
@@ -19,13 +19,13 @@ const traverser = (ast, visitor) => {
       case 'Wrapper':
       case 'WeakWrapper':
       case 'Block':
-        traverseArray(node.pramas, node)
+        traverseArray(node.params, node)
         break
       case 'WhiteSpace':
       case 'Formula':
       case 'Parameter':
       case 'Number':
-      case 'operator':
+      case 'Operator':
         break
       default:
         throw new TypeError(node.type)

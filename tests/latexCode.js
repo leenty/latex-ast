@@ -1,6 +1,6 @@
 // const latexCode = '\\frac{{-b\\pm \\sqrt {{b^2}-4ac}}}{{2a}}'
 // const latexCode = '\\frac {-b \\pm \\sqrt {b^2-4ac}}{2a}'
-const latexCode = `\\frac {-b \\pm   \\sqrt {b^2-4ac}}{2a}\\\\-b \\pm \\frac {1}{2}`
+const latexCode = `\\frac   {-b     \\pm   \\sqrt {b^2-4ac}}{2a}\\\\-b \\pm \\frac {1}{2}`
 // const latexCode = '123'
 // const latexCode = '(x-2)(x-3)'
 // const latexCode = '{(1-x)^2}'
