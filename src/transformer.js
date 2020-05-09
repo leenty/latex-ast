@@ -82,6 +82,14 @@ const transformer = (ast) => {
         })
       },
     },
+    Other: {
+      enter(node, parent) {
+        parent._context.push({
+          type: 'Other',
+          value: node.value,
+        })
+      },
+    },
   })
 
   return newAst

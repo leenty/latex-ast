@@ -26,6 +26,7 @@ const traverser = (ast, visitor) => {
       case 'Parameter':
       case 'Number':
       case 'Operator':
+      case 'Other':
         break
       default:
         throw new TypeError(node.type)
